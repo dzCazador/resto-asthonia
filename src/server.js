@@ -9,6 +9,14 @@ const port = 3000;
 app.use(express.json()); // Para manejar peticiones JSON
 app.use(cors()); // Habilitar CORS si es necesario
 
+// Servir archivos estáticos desde la carpeta 'public'
+app.use(express.static('public'));
+
+// Ruta para servir el index.html
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
 // Conexión a MySQL
 const db = mysql.createConnection({
   host: 'mysql-infoTracker.alwaysdata.net',
